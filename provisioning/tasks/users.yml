@@ -1,0 +1,21 @@
+- name: Setup voevent user-group
+  group: name=voevent
+  sudo: yes
+
+- name: Create voevent deploy/serve users.
+  user: name={{item}} group=voevent shell=/bin/bash
+  sudo: yes
+  with_items: voevent_users
+
+- name: Lookup contents of the standard authorized_keys file
+  slurp: src=~/.ssh/authorized_keys
+  register: authkeys
+
+#    - name: Debug
+#      debug: msg="Authkeys \"{{authkeys.content|b64decode}}\""
+#      tags: debug
+
+- name: Upload authorized_keys for new users
+  authorized_key: user={{item}} key="{{authkeys.content|b64decode}}"
+  with_items: voevent_users
+  sudo: yes

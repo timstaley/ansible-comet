@@ -1,0 +1,20 @@
+- hosts: voeventnode
+  vars:
+    voevent_users:
+      - voeventdeploy
+      - voeventserve
+
+  tasks:
+    - include: tasks/base.yml
+    - include: tasks/users.yml
+
+    - name: Get lxml apt-packages.
+      apt: name=libxml2-dev,libxslt1-dev update_cache=yes cache_valid_time=600
+      sudo: yes
+
+    - name: Install sendgrid into a virtualenv
+      pip:
+        name: sendgrid
+        virtualenv: ~/deploy_venv
+      remote_user: voeventdeploy
+
