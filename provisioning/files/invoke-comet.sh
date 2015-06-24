@@ -17,4 +17,5 @@ twistd -l $LOGFILE -n comet \
     --verbose \
     --eventdb=$EVENT_DB_DIR --local-ivo=ivo://$IVORN \
     --remote=$REMOTE \
+    --broadcast \
 
