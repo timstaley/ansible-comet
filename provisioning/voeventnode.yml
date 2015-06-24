@@ -1,4 +1,7 @@
 - hosts: voeventnode
+  roles: 
+    - role: swapfile
+      sudo: yes
   vars:
     voevent_users:
       - voeventdeploy
@@ -8,13 +11,19 @@
     - include: tasks/base.yml
     - include: tasks/users.yml
 
-    - name: Get lxml apt-packages.
-      apt: name=libxml2-dev,libxslt1-dev update_cache=yes cache_valid_time=600
+    - name: Get apt-packages required for installing comet.
+      apt: update_cache=yes cache_valid_time=600 name={{item}}
+      with_items:
+        - libxml2-dev
+        - libxslt1-dev
+        - zlib1g-dev
       sudo: yes
 
-    - name: Install sendgrid into a virtualenv
+    - name: Install required packages into a virtualenv
       pip:
-        name: sendgrid
+        name: "{{item}}"
         virtualenv: ~/deploy_venv
       remote_user: voeventdeploy
+      with_items:
+        cython comet
 
