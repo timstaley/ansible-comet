@@ -1,6 +1,6 @@
 #voevent-node-deploy
 ###Provisioning scripts for a VOEvent broker
-Work in progress. 
+~~Work in progress.~~ Working quite nicely, but not seriously tested yet. 
 
 
 ##Outline
