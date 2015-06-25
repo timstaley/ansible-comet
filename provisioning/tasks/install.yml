@@ -1,0 +1,15 @@
+- name: Get apt-packages required for installing comet.
+  apt: update_cache=yes cache_valid_time=600 name={{item}}
+  with_items:
+    - libxml2-dev
+    - libxslt1-dev
+    - zlib1g-dev
+  sudo: yes
+
+- name: Install comet into a virtualenv
+  remote_user: voeventdeploy
+  pip:
+    name: "{{item}}"
+    virtualenv: /home/voeventdeploy/deploy_venv
+  with_items:
+    cython comet
