@@ -13,3 +13,12 @@
     - pip
     - wheel
     - virtualenv
+
+- name: Set timezone to UTC
+  shell: timedatectl set-timezone UTC
+  when: ansible_date_time.tz != "UTC"
+  sudo: yes
+
+- name: Install ntpd
+  apt: name=ntp
+  sudo: yes
