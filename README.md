@@ -41,8 +41,7 @@ before running the tests.
 To pull up a working VM with Comet installed:
 
     cd vagrant
-    ansible-galaxy install kamaln7.swapfile
-    ansible-galaxy install timstaley.base
+    ansible-galaxy install -r requirements.txt
     vagrant up
     
 
