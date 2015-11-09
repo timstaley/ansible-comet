@@ -51,13 +51,14 @@ To pull up a working VM with Comet installed:
 Running against a pre-existing machine is a bit more complicated because there 
 are more possible variables, and you may want to familiarize yourself with 
 the Ansible docs first. In short, you'll need to:
-- Configure your ansible 
+
+ - Configure your ansible 
   [inventory](http://docs.ansible.com/intro_inventory.html#inventory)
   to reach the desired machines. Test with e.g. `ansible -m ping all`.
-- Modify [test-comet-role.yml](test/test-comet-role.yml) as required. 
+ - Modify [test-comet-role.yml](test/test-comet-role.yml) as required. 
   You probably don't want/need swapfile configuration, and you will need to set 
   the `hosts` to match your inventory.
-- Run your new [playbook](http://docs.ansible.com/ansible/playbooks.html) 
+ - Run your new [playbook](http://docs.ansible.com/ansible/playbooks.html) 
   file using the `ansible-playbook` command.
 
 
