@@ -1,9 +1,9 @@
 #!/bin/bash
 
-source /home/voeventdeploy/deploy_venv/bin/activate
+source /home/{{ comet_deploy_user }}/deploy_venv/bin/activate
 
-WORKING_DIR=/home/voeventserve/working_dir
-IVORN=foo.bar.baz/voevent-node-deploy-test
+WORKING_DIR=/home/{{ comet_serve_user }}/working_dir
+IVORN=foo.bar.baz/comet-node-deploy-test
 LOGFILE=$WORKING_DIR/log/$(date +%F-%H-%M).txt
 EVENT_DB_DIR=$WORKING_DIR/db
 REMOTE=voevent.4pisky.org:8099

@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
-  config.vm.define "voeventnode" do |voeventnode| end
+  config.vm.define "cometvm" do |voeventnode| end
 
   config.vm.provider "virtualbox" do |v|
       v.memory = 512
@@ -11,7 +11,11 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "../provisioning/voeventnode.yml"
+      ansible.playbook = "../test/test-comet-role.yml"
+      ansible.verbose = "vv"
+      ansible.groups = {
+      "test" => ["cometvm"],
+      }
   end
  
   if Vagrant.has_plugin?("vagrant-cachier")

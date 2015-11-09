@@ -1,0 +1,6 @@
+---
+# defaults file for comet
+
+comet_user_group: comet
+comet_deploy_user: cometdeploy
+comet_serve_user: cometserve

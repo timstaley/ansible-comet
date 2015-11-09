@@ -1,11 +1,11 @@
-- name: Setup voevent user-group
-  group: name=voevent
+- name: Setup comet user-group
+  group: name="{{ comet_user_group }}"
   sudo: yes
 
-- name: Create voevent deploy/serve users.
-  user: name={{item}} group=voevent shell=/bin/bash
+- name: Create comet deploy/serve users.
+  user: name={{item}} group="{{ comet_user_group }}" shell=/bin/bash
   sudo: yes
-  with_items: voevent_users
+  with_items: comet_users
 
 - name: Lookup contents of the standard authorized_keys file
   slurp: src=~/.ssh/authorized_keys
@@ -17,5 +17,5 @@
 
 - name: Upload authorized_keys for new users
   authorized_key: user={{item}} key="{{authkeys.content|b64decode}}"
-  with_items: voevent_users
+  with_items: comet_users
   sudo: yes

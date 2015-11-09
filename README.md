@@ -1,24 +1,21 @@
-#voevent-node-deploy
-###Provisioning scripts for a VOEvent broker
-~~Work in progress.~~ Working quite nicely, but not seriously tested yet. 
+#timstaley.comet
 
+An [Ansible][] [role][] that provides an installation of the 
+[Comet][] [VOEvent][] broker.
+
+
+[Ansible]: http://www.ansible.com/configuration-management
+[role]: http://docs.ansible.com/ansible/playbooks_roles.html
+
+[VOEvent]: http://voevent.rtfd.org
+[Comet]: http://comet.readthedocs.org/
 
 ##Outline
-The goal is to produce a set of [Ansible](http://docs.ansible.com) scripts which
-set up a [VOEvent](http://voevent.rtfd.org) broker. These can be used to
-provision a [Vagrant](https://www.vagrantup.com/) virtual machine (VM),
-which can in turn be instantiated using any of the supported Vagrant 
-[providers](http://docs.vagrantup.com/v2/providers/index.html) (and even
-cloud-services via plugins e.g. [AWS](https://github.com/mitchellh/vagrant-aws),
-[Digital Ocean](https://github.com/smdahlen/vagrant-digitalocean)). 
-Alternatively, the scripts may be pointed at a pre-existing Ubuntu installation 
-to add the required functionality.
-
-These scripts will install the bare minimum to get a
+This role will install the bare minimum to get a
 [Comet](http://comet.readthedocs.org/) instance up and running, and won't
-actually do anything with the VOEvents they receive. The idea is that this
-repository provides a starting point for implementing a custom-broker
-provisioning setup. Forks ahoy!
+actually do anything with the VOEvents they receive. The Comet-invocation script
+can be supplied as a role-argument, so you can easily change that to set up
+passing of VOEvents to your own custom code.
 
 ##Deployment details
 The scripts create a pair of non-sudo users, `voeventdeploy` and `voeventserve`.

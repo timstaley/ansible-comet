@@ -11,5 +11,5 @@ respawn
 
 # Start the process
 script
-  exec su voeventserve -c "/home/voeventdeploy/invoke-comet.sh >> /tmp/voeventserve.log 2>&1"
+  exec su {{ comet_serve_user }} -c "/home/{{ comet_deploy_user }}/invoke-comet.sh >> /tmp/comet.log 2>&1"
 end script

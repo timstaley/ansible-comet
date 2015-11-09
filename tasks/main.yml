@@ -1,0 +1,35 @@
+---
+# tasks file for comet
+
+- include: users.yml tags=users
+- include: install.yml tags=install
+
+- name: Upload Comet invocation command
+  template:
+    src: invoke-comet.sh.j2
+    dest: "/home/{{ comet_deploy_user }}/invoke-comet.sh"
+    owner: "{{ comet_deploy_user }}"
+    group: "{{ comet_user_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+  remote_user: "{{ comet_deploy_user }}"
+  #Restart service if invocation has changed:
+  notify:
+    - restart comet
+  tags: config
+
+- name: Upload Comet init script
+  template:
+    src: init/comet.conf.j2
+    dest: /etc/init/comet.conf
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+  sudo: yes
+  #Restart service if init-script has changed:
+  notify:
+    - restart comet
+  tags: config
+
+- name: Start the 'comet' service
+  service: name=comet state=started
+  sudo: yes

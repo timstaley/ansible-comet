@@ -1,0 +1,10 @@
+- hosts: test
+
+
+  roles:
+    - role: kamaln7.swapfile
+      sudo: yes
+
+    - timstaley.base
+
+    - { role: ../../comet, }

@@ -7,9 +7,9 @@
   sudo: yes
 
 - name: Install comet into a virtualenv
-  remote_user: voeventdeploy
+  remote_user: "{{ comet_deploy_user }}"
   pip:
-    name: "{{item}}"
-    virtualenv: /home/voeventdeploy/deploy_venv
+    name: "{{ item }}"
+    virtualenv: "/home/{{ comet_deploy_user }}/deploy_venv"
   with_items:
     cython comet

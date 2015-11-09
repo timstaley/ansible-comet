@@ -1,0 +1,6 @@
+---
+# vars file for comet
+
+comet_users:
+  - "{{ comet_deploy_user }}"
+  - "{{ comet_serve_user }}"
