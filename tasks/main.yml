@@ -6,8 +6,8 @@
 
 - name: Upload Comet invocation command
   template:
-    src: invoke-comet.sh.j2
-    dest: "/home/{{ comet_deploy_user }}/invoke-comet.sh"
+    src: "{{ comet_invoke_template }}"
+    dest: "/home/{{ comet_deploy_user }}/{{ comet_invoke_scriptname }}"
     owner: "{{ comet_deploy_user }}"
     group: "{{ comet_user_group }}"
     mode: "u=rwx,g=rx,o=rx"
