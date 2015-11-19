@@ -2,7 +2,7 @@
 
 # Customised template to test role variables:
 
-source /home/{{ comet_deploy_user }}/deploy_venv/bin/activate
+source {{ comet_venv }}/bin/activate
 
 WORKING_DIR=/home/{{ comet_serve_user }}/working_dir
 IVORN=foo.bar.baz/comet-node-deploy-test

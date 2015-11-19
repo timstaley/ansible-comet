@@ -6,10 +6,15 @@
     - zlib1g-dev
   sudo: yes
 
+
+- name: Create venv dir with correct permissions
+  file: path={{ comet_venv }} state=directory mode=0755 owner={{ comet_deploy_user }}
+  sudo: yes
+
 - name: Install comet into a virtualenv
   remote_user: "{{ comet_deploy_user }}"
   pip:
     name: "{{ item }}"
-    virtualenv: "/home/{{ comet_deploy_user }}/deploy_venv"
+    virtualenv: "{{ comet_venv }}"
   with_items:
     cython comet

@@ -31,5 +31,5 @@
   tags: config
 
 - name: Start the 'comet' service
-  service: name=comet state=started
+  service: name=comet state=started enabled=yes
   sudo: yes

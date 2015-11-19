@@ -7,3 +7,5 @@ comet_serve_user: cometserve
 
 comet_invoke_template: comet-default-invoke.sh.j2
 comet_invoke_scriptname: comet-invoke.sh
+
+comet_venv: "/home/{{ comet_deploy_user }}/deploy_venv"
