@@ -8,7 +8,12 @@
 
 
 - name: Create venv dir with correct permissions
-  file: path={{ comet_venv }} state=directory mode=0755 owner={{ comet_deploy_user }}
+  file:
+    path: "{{ comet_venv }}"
+    state: directory
+    mode: 0755
+    owner: "{{ comet_deploy_user }}"
+    recurse: yes
   sudo: yes
 
 - name: Install comet into a virtualenv
