@@ -1,10 +1,10 @@
 - name: Setup comet user-group
   group: name="{{ comet_user_group }}"
-  sudo: yes
+  become: yes
 
 - name: Create comet deploy/serve users.
   user: name={{item}} group="{{ comet_user_group }}" shell=/bin/bash
-  sudo: yes
+  become: yes
   with_items: comet_users
 
 - name: Lookup contents of the standard authorized_keys file
@@ -18,4 +18,4 @@
 - name: Upload authorized_keys for new users
   authorized_key: user={{item}} key="{{authkeys.content|b64decode}}"
   with_items: comet_users
-  sudo: yes
+  become: yes

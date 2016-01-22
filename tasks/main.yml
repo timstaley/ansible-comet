@@ -24,7 +24,7 @@
     owner: root
     group: root
     mode: "u=rw,g=r,o=r"
-  sudo: yes
+  become: yes
   #Restart service if init-script has changed:
   notify:
     - restart comet
@@ -32,4 +32,4 @@
 
 - name: Start the 'comet' service
   service: name=comet state=started enabled=yes
-  sudo: yes
+  become: yes

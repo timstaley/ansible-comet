@@ -2,4 +2,4 @@
 # handlers file for comet
 - name: restart comet
   service: name=comet state=restarted
-  sudo: yes
+  become: yes

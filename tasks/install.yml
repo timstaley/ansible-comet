@@ -4,17 +4,22 @@
     - libxml2-dev
     - libxslt1-dev
     - zlib1g-dev
-  sudo: yes
+  become: yes
 
 
 - name: Create venv dir with correct permissions
   file:
     path: "{{ comet_venv }}"
     state: directory
-    mode: 0755
+    mode: "u=rwx,g=rx,o=rx"
     owner: "{{ comet_deploy_user }}"
-    group: "{{ comet_deploy_user }}"
-  sudo: yes
+  become: yes
+
+- name: Install SSL issues workaround
+  remote_user: "{{ comet_deploy_user }}"
+  pip:
+    name: "requests[security]"
+    virtualenv: "{{ comet_venv }}"
 
 - name: Install comet into a virtualenv
   remote_user: "{{ comet_deploy_user }}"
@@ -23,3 +28,11 @@
     virtualenv: "{{ comet_venv }}"
   with_items:
     cython comet
+  when: not comet_use_fork
+
+- name: Install comet-fork if required
+  remote_user: "{{ comet_deploy_user }}"
+  pip:
+    name: "{{ comet_fork_repo }}#egg=comet_fork"
+    virtualenv: "{{ comet_venv }}"
+  when: comet_use_fork

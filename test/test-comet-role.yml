@@ -3,12 +3,13 @@
 
   roles:
     - role: kamaln7.swapfile
-      sudo: yes
+      become: yes
 
     - timstaley.base
 
     - { role: ../../comet,
         comet_invoke_template: comet-test-invoke.sh.j2,
         comet_serve_user: "testuserfoo",
-        comet_venv: "/opt/venvs/comet_test"
+        comet_venv: "/opt/venvs/comet_test",
+        comet_use_fork: True,
       }
