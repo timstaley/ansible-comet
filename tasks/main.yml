@@ -11,7 +11,8 @@
     owner: "{{ comet_deploy_user }}"
     group: "{{ comet_user_group }}"
     mode: "u=rwx,g=rx,o=rx"
-  remote_user: "{{ comet_deploy_user }}"
+  become: yes
+  become_user: "{{ comet_deploy_user }}"
   #Restart service if invocation has changed:
   notify:
     - restart comet

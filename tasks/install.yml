@@ -16,23 +16,26 @@
   become: yes
 
 - name: Install SSL issues workaround
-  remote_user: "{{ comet_deploy_user }}"
   pip:
     name: "requests[security]"
     virtualenv: "{{ comet_venv }}"
+  become: yes
+  become_user: "{{ comet_deploy_user }}"
 
 - name: Install comet into a virtualenv
-  remote_user: "{{ comet_deploy_user }}"
   pip:
     name: "{{ item }}"
     virtualenv: "{{ comet_venv }}"
   with_items:
     cython comet
   when: not comet_use_fork
+  become: yes
+  become_user: "{{ comet_deploy_user }}"
 
 - name: Install comet-fork if required
-  remote_user: "{{ comet_deploy_user }}"
   pip:
     name: "{{ comet_fork_repo }}#egg=comet_fork"
     virtualenv: "{{ comet_venv }}"
   when: comet_use_fork
+  become: yes
+  become_user: "{{ comet_deploy_user }}"
