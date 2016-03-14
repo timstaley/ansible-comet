@@ -11,6 +11,10 @@ EVENT_DB_DIR=$WORKING_DIR/db
 REMOTE=voevent.4pisky.org:8099
 
 
+# Add this as a remote if testing with Vagrant and you want to simulate
+# a remote
+VIRTUALBOX_HOST=$(netstat -r | grep 'default' | awk '{print $2}')
+
 mkdir -p $(dirname $LOGFILE)
 mkdir -p $EVENT_DB_DIR
 cd $WORKING_DIR
@@ -21,5 +25,8 @@ twistd -l $LOGFILE -n comet \
     --remote=$REMOTE \
     --broadcast \
     --print-event \
+    --remote=$VIRTUALBOX_HOST \
+
+
 
 
