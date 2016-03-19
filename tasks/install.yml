@@ -17,7 +17,7 @@
 
 - name: Install SSL issues workaround
   pip:
-    name: "requests[security]"
+    name: "requests[security] service_identity"
     virtualenv: "{{ comet_venv }}"
   become: yes
   become_user: "{{ comet_deploy_user }}"
