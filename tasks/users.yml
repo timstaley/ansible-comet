@@ -5,7 +5,7 @@
 - name: Create comet deploy/serve users.
   user: name={{item}} group="{{ comet_user_group }}" shell=/bin/bash
   become: yes
-  with_items: comet_users
+  with_items: "{{ comet_users }}"
 
 - name: Lookup contents of the standard authorized_keys file
   slurp: src=~/.ssh/authorized_keys
@@ -17,5 +17,5 @@
 
 - name: Upload authorized_keys for new users
   authorized_key: user={{item}} key="{{authkeys.content|b64decode}}"
-  with_items: comet_users
+  with_items: "{{ comet_users }}"
   become: yes
