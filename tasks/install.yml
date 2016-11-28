@@ -24,10 +24,9 @@
 
 - name: Install comet into a virtualenv
   pip:
-    name: "{{ item }}"
+    name: "comet"
     virtualenv: "{{ comet_venv }}"
-  with_items:
-    cython comet
+    version: "{{ comet_version }}"
   when: not comet_use_fork
   become: yes
   become_user: "{{ comet_deploy_user }}"

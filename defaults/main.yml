@@ -10,6 +10,7 @@ comet_invoke_scriptname: comet-invoke.sh
 
 comet_venv: "/home/{{ comet_deploy_user }}/deploy_venv"
 
+comet_version: "2.0.1"
 comet_use_fork: False
 comet_fork_repo: "git+https://github.com/4pisky/Comet.git"
 comet_fork_branch: "master"
