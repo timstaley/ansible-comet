@@ -15,18 +15,13 @@
     owner: "{{ comet_deploy_user }}"
   become: yes
 
-- name: Install SSL issues workaround
-  pip:
-    name: "requests[security] service_identity"
-    virtualenv: "{{ comet_venv }}"
-  become: yes
-  become_user: "{{ comet_deploy_user }}"
 
 - name: Install comet into a virtualenv
   pip:
     name: "comet"
     virtualenv: "{{ comet_venv }}"
     version: "{{ comet_version }}"
+    virtualenv_python: "python3"
   when: not comet_use_fork
   become: yes
   become_user: "{{ comet_deploy_user }}"

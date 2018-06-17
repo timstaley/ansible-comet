@@ -1,5 +1,5 @@
 ---
 # handlers file for comet
 - name: restart comet
-  service: name=comet state=restarted
+  systemd: name=comet state=restarted daemon_reload=yes
   become: yes

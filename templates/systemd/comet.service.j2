@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the Comet service 
+After=network-online.target
+
+[Service]
+Type=simple
+User={{ comet_serve_user }}
+ExecStart=/home/{{ comet_deploy_user }}/{{ comet_invoke_scriptname }}
+Restart=always
+RestartSec=3

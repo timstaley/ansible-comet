@@ -2,7 +2,7 @@
 
 
   roles:
-    - role: kamaln7.swapfile
+    - role: tersmitten.swapfile
       become: yes
 
     - timstaley.base
